@@ -2,9 +2,8 @@ FROM jupyter/minimal-notebook:177037d09156
 RUN pip install nbgitpuller
 RUN jupyter serverextension enable --py nbgitpuller --sys-prefix
 # -n skymap 
-#python=3.6 
-RUN conda install  --yes pandas=0.23.4 seaborn=0.8.1 scikit-learn=0.19.1 
-RUN conda install nb_conda_kernels
+RUN conda install  --yes python=3.6 pandas=0.23.4 seaborn=0.8.1 scikit-learn=0.19.1  nb_conda_kernels
+#RUN conda install nb_conda_kernels
   
 RUN conda install --yes -c bioconda kallisto=0.44.0 trim-galore=0.4.1
 #RUN conda install -c conda-forge rsync
@@ -14,6 +13,7 @@ RUN conda install --yes -c plotly plotly
 #RUN conda install --yes -p /home/jovyan/conda_user/skymap ipywidgets
 RUN conda install --yes ipywidgets
 
+USER root
 RUN jupyter nbextension enable --py widgetsnbextension --system && \
     # Also activate ipywidgets extension for JupyterLab
     # Check this URL for most recent compatibilities
@@ -22,7 +22,7 @@ RUN jupyter nbextension enable --py widgetsnbextension --system && \
     jupyter labextension install jupyterlab_bokeh && \
     npm cache clean --force
     
-USER root
+
 RUN apt-get update && \
     apt-get install -y rsync openssh-client
 USER $NB_UID
