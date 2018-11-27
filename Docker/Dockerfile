@@ -31,7 +31,9 @@ RUN conda install -c conda-forge jupyter_nbextensions_configurator
 RUN conda install -c conda-forge jupyter_contrib_nbextensions 
 RUN jupyter contrib nbextension install --user 
 RUN jupyter nbextension enable --user init_cell/main 
-RUN jupyter nbextension enable --user  codefolding/main
+#RUN jupyter nbextension enable --user  codefolding/main
+RUN jupyter nbextension enable --user  collapsible_headings/main
+
 ADD https://raw.githubusercontent.com/brianyiktaktsui/CarterLabJupyterHub/master/start.sh /home/jovyan/start.sh
 
 USER root
