@@ -1,4 +1,7 @@
 #!/bin/sh
 mkdir notebooks
-gitpuller https://github.com/brianyiktaktsui/CarterLabJupyterHub master notebooks 
+cd notebooks
+git init
+git pull https://github.com/brianyiktaktsui/CarterLabJupyterHub.git
+
 jupyter trust /home/jovyan/notebooks/*ipynb
